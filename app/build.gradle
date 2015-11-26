@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "org.andstatus.app"
-        minSdkVersion 16
+        minSdkVersion 18
         targetSdkVersion 22
         versionName '21.0'
         versionCode 139
@@ -35,6 +35,8 @@ configurations {
     all {
         exclude module: 'httpclient'
         exclude module: 'httpcore'
+        // check for updates every build
+        resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
     }
 }
 
@@ -53,4 +55,13 @@ dependencies {
 	compile files('libs/httpmime-4.3.5.jar')
     compile files('libs/signpost-commonshttp4-1.2.1.2.jar')
     compile files('libs/signpost-core-1.2.1.2.jar')
+
+    compile ('com.mobbu.passwear.sdk:core:1.0-SNAPSHOT') {
+        changing = true
+    }
+    compile ('com.mobbu.passwear.sdk:api:1.0+MPW-269-SNAPSHOT') {
+        changing = true
+        exclude group: 'stax', module: 'stax-api'
+        exclude group: 'xpp3', module: 'xpp3'
+    }
 }

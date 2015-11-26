@@ -74,12 +74,14 @@
             </intent-filter>
 		</receiver>
 
+        <activity android:name=".AuthActivity" android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 		<activity android:name=".msg.TimelineActivity" android:label="@string/app_name" 
 		    android:launchMode="singleTask" android:windowSoftInputMode="adjustResize">
-			<intent-filter>
-				<action android:name="android.intent.action.MAIN" />
-				<category android:name="android.intent.category.LAUNCHER" />
-			</intent-filter>
 			<intent-filter>
 				<action android:name="android.intent.action.VIEW"/>
 				<action android:name="android.intent.action.PICK"/>
