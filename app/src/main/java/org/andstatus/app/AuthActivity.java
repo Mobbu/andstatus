@@ -13,7 +13,7 @@ public class AuthActivity extends PasswearActivity {
 
     @Override
     public void finish() {
-        super.finish();
         startActivity(new Intent(this, TimelineActivity.class));
+        super.finish();
     }
 }
