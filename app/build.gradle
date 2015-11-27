@@ -59,7 +59,7 @@ dependencies {
     compile ('com.mobbu.passwear.sdk:core:1.0-SNAPSHOT') {
         changing = true
     }
-    compile ('com.mobbu.passwear.sdk:api:1.0-SNAPSHOT') {
+    compile ('com.mobbu.passwear.sdk:api:1.0+MPW-271-SNAPSHOT') {
         changing = true
         exclude group: 'stax', module: 'stax-api'
         exclude group: 'xpp3', module: 'xpp3'
