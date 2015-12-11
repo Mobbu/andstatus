@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "org.andstatus.app"
-        minSdkVersion 18
+        minSdkVersion 21
         targetSdkVersion 22
         versionName '21.0'
         versionCode 139
@@ -45,8 +45,8 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.2.1'
     compile 'ch.acra:acra:4.6.2'    // https://github.com/ACRA/acra/wiki/AdvancedUsage
     compile 'org.apache.httpcomponents:httpclient-android:4.3.5.1' // https://hc.apache.org/httpcomponents-client-4.3.x/android-port.html
-	
-	/* Don't use these dependencies for now, because AIDE doesn't support exclusion 
+
+	/* Don't use these dependencies for now, because AIDE doesn't support exclusion
 	   of transitive dependencies.
     compile 'org.apache.httpcomponents:httpmime:4.3.5'
     compile 'oauth.signpost:signpost-commonshttp4:1.2.1.2'
@@ -56,12 +56,6 @@ dependencies {
     compile files('libs/signpost-commonshttp4-1.2.1.2.jar')
     compile files('libs/signpost-core-1.2.1.2.jar')
 
-    compile ('com.mobbu.passwear.sdk:core:1.0-SNAPSHOT') {
-        changing = true
-    }
-    compile ('com.mobbu.passwear.sdk:api:1.0-SNAPSHOT') {
-        changing = true
-        exclude group: 'stax', module: 'stax-api'
-        exclude group: 'xpp3', module: 'xpp3'
-    }
+    compile 'com.mobbu.passwear:sdk:1.0+MPW-263-SNAPSHOT'
+    compile 'com.mobbu.passwear:core:1.0+MPW-263-SNAPSHOT'
 }
