@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "org.andstatus.app"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 22
         versionName '21.0'
         versionCode 139
@@ -16,11 +16,25 @@ android {
         project.ext.set("archivesBaseName", "AndStatus-$versionName");
     }
 
+    signingConfigs {
+        release {
+            if (project.hasProperty('RELEASE_STORE_FILE')) {
+                storeFile file(RELEASE_STORE_FILE)
+                storePassword RELEASE_STORE_PASSWORD
+                keyAlias RELEASE_KEY_ALIAS
+                keyPassword RELEASE_KEY_PASSWORD
+            }
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             lintOptions {
                 disable 'MissingTranslation'
+            }
+            if (project.hasProperty('MOBBU_KEYSTORE')) {
+                signingConfig signingConfigs.release
             }
         }
     }
@@ -35,6 +49,8 @@ configurations {
     all {
         exclude module: 'httpclient'
         exclude module: 'httpcore'
+        // check for updates every build
+        resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
     }
 }
 
@@ -43,8 +59,8 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.2.1'
     compile 'ch.acra:acra:4.6.2'    // https://github.com/ACRA/acra/wiki/AdvancedUsage
     compile 'org.apache.httpcomponents:httpclient-android:4.3.5.1' // https://hc.apache.org/httpcomponents-client-4.3.x/android-port.html
-	
-	/* Don't use these dependencies for now, because AIDE doesn't support exclusion 
+
+	/* Don't use these dependencies for now, because AIDE doesn't support exclusion
 	   of transitive dependencies.
     compile 'org.apache.httpcomponents:httpmime:4.3.5'
     compile 'oauth.signpost:signpost-commonshttp4:1.2.1.2'
@@ -53,4 +69,12 @@ dependencies {
 	compile files('libs/httpmime-4.3.5.jar')
     compile files('libs/signpost-commonshttp4-1.2.1.2.jar')
     compile files('libs/signpost-core-1.2.1.2.jar')
+
+    compile(name:'passwear-sdk-1.0.0-SNAPSHOT', ext:'aar')
+    compile(name:'passwear-core-1.0.0-SNAPSHOT', ext:'aar')
+    compile 'com.google.guava:guava:18.0'
+    compile ('org.simpleframework:simple-xml:2.7.1') {
+        exclude group: 'stax', module: 'stax-api'
+        exclude group: 'xpp3', module: 'xpp3'
+    }
 }
