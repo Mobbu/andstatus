@@ -16,11 +16,25 @@ android {
         project.ext.set("archivesBaseName", "AndStatus-$versionName");
     }
 
+    signingConfigs {
+        release {
+            if (project.hasProperty('RELEASE_STORE_FILE')) {
+                storeFile file(RELEASE_STORE_FILE)
+                storePassword RELEASE_STORE_PASSWORD
+                keyAlias RELEASE_KEY_ALIAS
+                keyPassword RELEASE_KEY_PASSWORD
+            }
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             lintOptions {
                 disable 'MissingTranslation'
+            }
+            if (project.hasProperty('MOBBU_KEYSTORE')) {
+                signingConfig signingConfigs.release
             }
         }
     }
@@ -56,7 +70,8 @@ dependencies {
     compile files('libs/signpost-commonshttp4-1.2.1.2.jar')
     compile files('libs/signpost-core-1.2.1.2.jar')
 
-    compile (name:'passwear-sdk-1.0.0-SNAPSHOT', ext:'aar')
+    compile(name:'passwear-sdk-1.0.0-SNAPSHOT', ext:'aar')
+    compile(name:'passwear-core-1.0.0-SNAPSHOT', ext:'aar')
     compile 'com.google.guava:guava:18.0'
     compile ('org.simpleframework:simple-xml:2.7.1') {
         exclude group: 'stax', module: 'stax-api'

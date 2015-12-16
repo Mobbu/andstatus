@@ -18,7 +18,7 @@ allprojects {
             url 'http:////build00:8081/nexus/content/repositories/thirdparty/'
         }
         mavenLocal()
-        flatDir{
+        flatDir {
             dirs 'libs'
         }
     }
