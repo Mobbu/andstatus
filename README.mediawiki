@@ -1,3 +1,7 @@
+= AndStatus with Passwear=
+
+This is a sample project showing how Mobbu PassWear can be used to secure an existing app in this case the excellent open source social media reader AndStatus.
+
 = AndStatus =
 
 AndStatus is an Open Source low traffic social networking client with tree-like threaded conversations.
