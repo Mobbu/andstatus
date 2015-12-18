@@ -83,7 +83,7 @@
 		<activity android:name=".msg.TimelineActivity" android:label="@string/app_name" 
 		    android:launchMode="singleTask" android:windowSoftInputMode="adjustResize">
             <intent-filter>
-                <action android:name="com.mobbu.passwear.COMPLETE"/>
+                <action android:name="org.andstatus.app.PASSWEAR_COMPLETE"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
             <intent-filter>
